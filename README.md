@@ -1,6 +1,7 @@
 ## Description
 
-UI for the yt-dlp project. Intended to be a simpler way to use it without the need to use command line every time. If you want any new features added feel free to open up an issue. There are no guarantees that it will stay updates.
+Project to download videos from most websites, simply open the website, copy the link and paste it into the box.
+UI for the yt-dlp project. Intended to be a simpler way to use it without the need to use command line every time. If you want any new features added feel free to open up an issue. There are no guarantees that it will stay updated.
 
 ## Installing
 
