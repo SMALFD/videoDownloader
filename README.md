@@ -1,18 +1,18 @@
-## Getting Started
+## Description
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+UI for the yt-dlp project. Intended to be a simpler way to use it without the need to use command line every time. If you want any new features added feel free to open up an issue. There are no guarantees that it will stay updates.
 
-## Folder Structure
+## Installing
 
-The workspace contains two folders by default, where:
+The source code is fully available and open source. There will be an executable to download at some point.
+In order for this to work you must download yt-dlp from it's github or a package manager.
+In order for this to work you must download ffmpeg from it's website.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Plan to add
+Better readme
+Update button
+Make it not look like poop
+Add .exe
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Disclaimer
+Project done in a few hours in order to learn to use swing. Don't judge too harshly please
