@@ -3,6 +3,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.awt.Toolkit;
+import java.awt.Image;
 
 // Main class
 public class UI {
@@ -25,7 +27,7 @@ public class UI {
         url.setBounds(150, 160, 220, 30);
         select.setBounds(150, 260, 220, 30);
         progress.setBounds(150, 300, 220, 20);
-        exitcode.setBounds(150, 300, 220, 20);
+        exitcode.setBounds(150, 300, 220, 40);
 
         // adding components in JFrame
         frame.add(button);
@@ -42,6 +44,10 @@ public class UI {
         frame.setLocationRelativeTo(null);
         // making the frame visible
         frame.setVisible(true);
+        frame.setTitle("ytDownloader");
+        System.out.println(getClass().getResource("/images/logo.jpg"));
+        Image logo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo.jpg"));
+        frame.setIconImage(logo);
         // Make the progress bar invisible until needed
         progress.setVisible(false);
         progress.setIndeterminate(false);
@@ -114,7 +120,7 @@ public class UI {
                                 try {
                                     int code = get();
                                     if (code != 0) {
-                                        exitcode.setText("Download failed\nExit code: " + code);
+                                        exitcode.setText("<html>Download failed<br>Exit code: " + code + "</html>");
                                     } else {
                                         exitcode.setText("Download succesful");
                                     }
@@ -180,7 +186,7 @@ public class UI {
                                 try {
                                     int code = get();
                                     if (code != 0) {
-                                        exitcode.setText("Download failed\nExit code: " + code);
+                                        exitcode.setText("<html>Download failed<br>Exit code: " + code + "</html>");
                                     } else {
                                         exitcode.setText("Download succesful");
                                     }
@@ -248,7 +254,7 @@ public class UI {
                                 try {
                                     int code = get();
                                     if (code != 0) {
-                                        exitcode.setText("Download failed\nExit code: " + code);
+                                        exitcode.setText("<html>Download failed<br>Exit code: " + code + "</html>");
                                     } else {
                                         exitcode.setText("Download succesful");
                                     }
