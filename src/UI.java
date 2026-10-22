@@ -1,8 +1,5 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -26,11 +23,11 @@ public class UI {
         JLabel exitcode = new JLabel("");
 
         // x axis, y axis, width, height
-        button.setBounds(150, 200, 220, 50);
-        url.setBounds(150, 160, 220, 30);
-        select.setBounds(150, 260, 220, 30);
-        progress.setBounds(150, 300, 220, 20);
-        exitcode.setBounds(150, 300, 220, 40);
+        button.setBounds(35, 60, 220, 50);
+        url.setBounds(35, 20, 220, 30);
+        select.setBounds(35, 120, 220, 30);
+        progress.setBounds(35, 160, 220, 20);
+        exitcode.setBounds(35, 160, 220, 40);
 
         // adding components in JFrame
         frame.add(button);
@@ -38,8 +35,7 @@ public class UI {
         frame.add(select);
         frame.add(progress);
         frame.add(exitcode);
-        // 400 width and 500 height
-        frame.setSize(500, 600);
+        frame.setSize(300, 250);
 
         // using no layout managers
         frame.setLayout(null);
@@ -49,6 +45,7 @@ public class UI {
         frame.setTitle("ytDownloader");
         Image logo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo.png"));
         frame.setIconImage(logo);
+        frame.setResizable(false);
         // Make the progress bar invisible until needed
         progress.setVisible(false);
         progress.setIndeterminate(false);
