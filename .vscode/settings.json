@@ -1,7 +1,14 @@
 {
-    "java.project.sourcePaths": ["src"],
+    "java.project.sourcePaths": [
+        "src"
+    ],
     "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+    "java.project.referencedLibraries": [],
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-26",
+            "path": "c:\\Program Files\\Eclipse Adoptium\\jdk-25.0.4.101-hotspot",
+            "default": true
+        }
     ]
 }

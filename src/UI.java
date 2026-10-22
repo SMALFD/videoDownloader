@@ -1,5 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -35,7 +38,6 @@ public class UI {
         frame.add(select);
         frame.add(progress);
         frame.add(exitcode);
-
         // 400 width and 500 height
         frame.setSize(500, 600);
 
@@ -45,8 +47,7 @@ public class UI {
         // making the frame visible
         frame.setVisible(true);
         frame.setTitle("ytDownloader");
-        System.out.println(getClass().getResource("/images/logo.jpg"));
-        Image logo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo.jpg"));
+        Image logo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo.png"));
         frame.setIconImage(logo);
         // Make the progress bar invisible until needed
         progress.setVisible(false);
