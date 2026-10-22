@@ -18,18 +18,21 @@ public class UI {
         String choices[] = { "Video", "mp3", "Playlist" };
         JComboBox<String> select = new JComboBox<>(choices);
         JProgressBar progress = new JProgressBar(0, 100);
+        JLabel exitcode = new JLabel("");
 
         // x axis, y axis, width, height
         button.setBounds(150, 200, 220, 50);
         url.setBounds(150, 160, 220, 30);
         select.setBounds(150, 260, 220, 30);
         progress.setBounds(150, 300, 220, 20);
+        exitcode.setBounds(150, 300, 220, 20);
 
-        // adding button in JFrame
+        // adding components in JFrame
         frame.add(button);
         frame.add(url);
         frame.add(select);
         frame.add(progress);
+        frame.add(exitcode);
 
         // 400 width and 500 height
         frame.setSize(500, 600);
@@ -43,19 +46,22 @@ public class UI {
         progress.setVisible(false);
         progress.setIndeterminate(false);
         progress.setStringPainted(false);
+        exitcode.setVisible(false);
 
-        // Set listeners for actions
+        // Listens for the download button
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                exitcode.setVisible(false);
                 progress.setVisible(true);
-                //System.out.println("Button pressed");
+                button.setEnabled(false);
+                // System.out.println("Button pressed");
                 String item = String.valueOf(select.getSelectedItem());
                 Pattern download = Pattern.compile("\\[download\\]");
                 try {
                     // For downloading a video
                     if (item.equals("Video")) {
-                        //System.out.println("Video");
+                        // System.out.println("Video");
                         // Sets as background task
                         new SwingWorker<Integer, String>() {
                             @Override
@@ -83,14 +89,16 @@ public class UI {
                                     Matcher matcher = download.matcher(line);
                                     boolean match = matcher.find();
                                     if (match) {
-                                        //System.out.println(line);
+                                        // System.out.println(line);
                                         String[] parts = line.split(" ");
-                                        //System.out.println(parts[2]);
-                                        if (!parts[2].equals("of") && !parts[1].equals("Destination:") ) {
+                                        // System.out.println(parts[2]);
+                                        if (!parts[2].equals("of") && !parts[1].equals("Destination:")) {
                                             String[] num = parts[2].split("\\.");
-                                            //System.out.println(num[0]);
-                                            int percentage = Integer.parseInt(num[0]);
-                                            progress.setValue(percentage);
+                                            // System.out.println(num[0]);
+                                            if (isNumeric(num[0])) {
+                                                int percentage = Integer.parseInt(num[0]);
+                                                progress.setValue(percentage);
+                                            }
                                         }
                                     }
 
@@ -100,9 +108,18 @@ public class UI {
                             // Print exit code
                             @Override
                             protected void done() {
+                                button.setEnabled(true);
+                                progress.setValue(0);
                                 progress.setVisible(false);
                                 try {
-                                    //System.out.println("Exit code: " + get());
+                                    int code = get();
+                                    if (code != 0) {
+                                        exitcode.setText("Download failed\nExit code: " + code);
+                                    } else {
+                                        exitcode.setText("Download succesful");
+                                    }
+                                    exitcode.setVisible(true);
+                                    // System.out.println("Exit code: " + get());
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
                                 }
@@ -110,7 +127,7 @@ public class UI {
                         }.execute();
 
                     } else if (item.equals("mp3")) {
-                        //System.out.println("mp3");
+                        // System.out.println("mp3");
                         new SwingWorker<Integer, String>() {
                             @Override
                             // Background action
@@ -138,14 +155,16 @@ public class UI {
                                     Matcher matcher = download.matcher(line);
                                     boolean match = matcher.find();
                                     if (match) {
-                                        //System.out.println(line);
+                                        // System.out.println(line);
                                         String[] parts = line.split(" ");
-                                        //System.out.println(parts[2]);
-                                        if (!parts[2].equals("of") && !parts[1].equals("Destination:") ) {
+                                        // System.out.println(parts[2]);
+                                        if (!parts[2].equals("of") && !parts[1].equals("Destination:")) {
                                             String[] num = parts[2].split("\\.");
-                                            //System.out.println(num[0]);
-                                            int percentage = Integer.parseInt(num[0]);
-                                            progress.setValue(percentage);
+                                            // System.out.println(num[0]);
+                                            if (isNumeric(num[0])) {
+                                                int percentage = Integer.parseInt(num[0]);
+                                                progress.setValue(percentage);
+                                            }
                                         }
                                     }
 
@@ -155,20 +174,28 @@ public class UI {
                             // Print exit code
                             @Override
                             protected void done() {
+                                button.setEnabled(true);
+                                progress.setValue(0);
                                 progress.setVisible(false);
                                 try {
-                                    //System.out.println("Exit code: " + get());
+                                    int code = get();
+                                    if (code != 0) {
+                                        exitcode.setText("Download failed\nExit code: " + code);
+                                    } else {
+                                        exitcode.setText("Download succesful");
+                                    }
+                                    exitcode.setVisible(true);
+                                    // System.out.println("Exit code: " + get());
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
                                 }
                             }
-
                         }.execute();
 
                     } else if (item.equals("Playlist"))
 
                     {
-                        //System.out.println("Playlist");
+                        // System.out.println("Playlist");
 
                         new SwingWorker<Integer, String>() {
                             @Override
@@ -196,14 +223,16 @@ public class UI {
                                     Matcher matcher = download.matcher(line);
                                     boolean match = matcher.find();
                                     if (match) {
-                                        //System.out.println(line);
+                                        // System.out.println(line);
                                         String[] parts = line.split(" ");
-                                        //System.out.println(parts[2]);
-                                        if (!parts[2].equals("of") && !parts[1].equals("Destination:") ) {
+                                        // System.out.println(parts[2]);
+                                        if (!parts[2].equals("of") && !parts[1].equals("Destination:")) {
                                             String[] num = parts[2].split("\\.");
-                                            //System.out.println(num[0]);
-                                            int percentage = Integer.parseInt(num[0]);
-                                            progress.setValue(percentage);
+                                            // System.out.println(num[0]);
+                                            if (isNumeric(num[0])) {
+                                                int percentage = Integer.parseInt(num[0]);
+                                                progress.setValue(percentage);
+                                            }
                                         }
                                     }
 
@@ -213,14 +242,22 @@ public class UI {
                             // Print exit code
                             @Override
                             protected void done() {
+                                button.setEnabled(true);
+                                progress.setValue(0);
                                 progress.setVisible(false);
                                 try {
-                                    //System.out.println("Exit code: " + get());
+                                    int code = get();
+                                    if (code != 0) {
+                                        exitcode.setText("Download failed\nExit code: " + code);
+                                    } else {
+                                        exitcode.setText("Download succesful");
+                                    }
+                                    exitcode.setVisible(true);
+                                    // System.out.println("Exit code: " + get());
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
                                 }
                             }
-
                         }.execute();
                     }
                 } catch (Exception a) {
@@ -231,5 +268,12 @@ public class UI {
         });
 
         return true;
+    }
+
+    public static boolean isNumeric(String str) {
+        if (str != null && !str.equals("") && !str.equals(" ")) {
+            return str.matches("-?\\d+(\\.\\d+)?"); // match a number with optional '-' and decimal.
+        }
+        return false;
     }
 }
